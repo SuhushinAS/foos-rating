@@ -1,29 +1,29 @@
 @import (reference) 'mixins';
 
 .box {
-  margin-left: @grid-offset;
-  margin-right: @grid-offset;
+  .fluid-prop-sm(padding-left, @grid-left-sm, @grid-left-xl);
+  .fluid-prop-sm(padding-right, @grid-right-sm, @grid-right-xl);
 
   &__row {
+    .fluid-prop-sm(margin-left, @grid-left-sm, @grid-left-xl);
+    .fluid-prop-sm(margin-right, @grid-right-sm, @grid-right-xl);
+
     display: flex;
     flex-wrap: wrap;
-    margin-left: -@grid-left;
-    margin-right: -@grid-right;
   }
 
   &__col {
+    .fluid-prop-sm(padding-left, @grid-left-sm, @grid-left-xl);
+    .fluid-prop-sm(padding-right, @grid-right-sm, @grid-right-xl);
 
     .col-make(xs, @xs-min);
     .col-make(sm, @sm-min);
-    .col-make(md, @md-min);
-    .col-make(lg, @lg-min);
     .col-make(xl, @xl-min);
 
     flex-basis: 0;
     flex-grow: 1;
     max-width: 100%;
-    padding-left: @grid-left;
-    padding-right: @grid-right;
+    position: relative;
     transition: flex-basis @animation, max-width @animation;
   }
 }
@@ -34,6 +34,7 @@
   &_@{class}_auto {
     @media @query {
       flex-basis: auto;
+      max-width: none;
     }
   }
 }

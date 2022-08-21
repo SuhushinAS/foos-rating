@@ -1,12 +1,10 @@
 // Настройки сетки
 @grid-columns: 12;
 
-@grid-width-sm: 600px;
-@grid-width-md: 942px;
-@grid-width-lg: 1110px;
+@grid-offset-sm: 4px;
+@grid-offset-xl: 16px;
 
-@grid-offset: 16px;
-
-@grid-left: floor(@grid-offset / 2);
-
-@grid-right: ceil(@grid-offset / 2);
+@grid-left-sm: floor(@grid-offset-sm / 2);
+@grid-right-sm: ceil(@grid-offset-sm / 2);
+@grid-left-xl: floor(@grid-offset-xl / 2);
+@grid-right-xl: ceil(@grid-offset-xl / 2);

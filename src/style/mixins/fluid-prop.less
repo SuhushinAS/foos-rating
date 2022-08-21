@@ -8,3 +8,7 @@
     .prop(@prop, ~'calc(@{p-k} * 100vw + @{p-b})');
   }
 }
+
+.fluid-prop-sm(@prop, @p-1, @p-2) {
+  .fluid-prop(@prop, @p-1, @size-sm-min, @p-2, @size-sm-max);
+}
