@@ -1,0 +1,14 @@
+{{#> modules/layout/default/index }}
+  <div class="page page_gray page-index">
+    <h1>HTML Layout Kit</h1>
+    <div class="page__block page__block_offset">
+      <ul>
+        {{# each menu}}
+          <li>
+            <a href="{{this.link}}">{{this.title}}</a>
+          </li>
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+{{/ modules/layout/default/index }}

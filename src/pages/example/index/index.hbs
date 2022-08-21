@@ -1,0 +1,27 @@
+{{#> modules/layout/default/index }}
+  <div class="page page_gray page-example">
+    <h1>Example</h1>
+    <div class="page__block page__block_offset">
+      <h2>Inline Block</h2>
+      {{#*inline "example-default-second"}}
+        <h1>First</h1>
+      {{/inline}}
+      {{#*inline "example-default-third"}}
+        <h2 slot="third">Second</h2>
+      {{/inline}}
+      {{#*inline "example-default-first"}}
+        <h3 slot="first">Third</h3>
+      {{/inline}}
+      {{> modules/example/default/index }}
+    </div>
+    <div class="page__block page__block_offset">
+      <h2>Svg Icon</h2>
+      {{> modules/common/svg-icon/index src="images/image.svg" }}
+    </div>
+    <div class="page__block page__block_offset">
+      {{#[helpers/with-image] head.image}}
+        <img src="{{src}}" alt="" height="16" width="16">
+      {{/[helpers/with-image]}}
+    </div>
+  </div>
+{{/ modules/layout/default/index }}

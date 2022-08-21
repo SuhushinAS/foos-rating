@@ -1,0 +1,92 @@
+@import '~normalize.css/normalize.css';
+@import (reference) 'mixins';
+@import (reference) 'font';
+@import (reference) 'link';
+
+* {
+  box-sizing: border-box;
+
+  &::before,
+  &::after {
+    box-sizing: border-box;
+  }
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  width: 100%;
+}
+
+body {
+  .f_p();
+
+  color: @c-gray-3;
+  font-family: @roboto-font-name, Helvetica, sans-serif;
+  word-wrap: break-word;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  .f_p();
+
+  color: @c-gray-3;
+  font-family: @roboto-font-name, Helvetica, sans-serif;
+  margin: 0;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+[type='number'] {
+  -moz-appearance: textfield;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+li {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  .f_h1();
+}
+
+h2 {
+  .f_h2();
+}
+
+h3 {
+  .f_h3();
+}
+
+h4,
+h5,
+h6 {
+  .f_h4();
+}
+
+img {
+  display: inline-block;
+  line-height: 0;
+  max-width: 100%;
+}
+
+a {
+  .link();
+}
