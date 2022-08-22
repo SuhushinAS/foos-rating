@@ -1,0 +1,11 @@
+@import (reference) 'src/style/mixins';
+
+.navigation {
+  display: flex;
+  justify-content: space-around;
+
+  &__item {
+    .fluid-prop-sm(padding, 8px, 16px);
+    .font-fluid(24px, 24px, 32px, 32px);
+  }
+}
