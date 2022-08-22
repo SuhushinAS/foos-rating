@@ -1,13 +1,5 @@
 {{#> modules/layout/default/index }}
   <div class="page page_gray page-index">
-    <div class="page__block page__block_offset">
-      <ul>
-        {{# each menu}}
-          <li>
-            <a href="{{this.link}}">{{this.title}}</a>
-          </li>
-        {{/each}}
-      </ul>
-    </div>
+    {{> modules/rating/list/index }}
   </div>
 {{/ modules/layout/default/index }}

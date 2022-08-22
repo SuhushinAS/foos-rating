@@ -6,11 +6,11 @@ component(
   class {
     /**
      * Конструктор класса для примера.
-     * @param {*} exampleDefault Элемент.
+     * @param {*} root Элемент.
      * @return {void}
      */
-    constructor(exampleDefault) {
-      this.exampleDefault = exampleDefault;
+    constructor(root) {
+      this.root = root;
     }
   }
 );
