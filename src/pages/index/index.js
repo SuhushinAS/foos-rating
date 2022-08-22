@@ -1,4 +1,2 @@
-import 'modules/layout/footer';
-import 'modules/layout/header';
-import 'modules/layout/layout';
+import 'modules/layout/default';
 import './style.less';

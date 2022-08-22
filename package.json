@@ -4,7 +4,7 @@
     "handlebars": "^4.7.7",
     "normalize.css": "^8.0.1"
   },
-  "description": "HtmlLayoutKit",
+  "description": "FoosRating",
   "devDependencies": {
     "@babel/cli": "^7.16.8",
     "@babel/core": "^7.16.7",
@@ -49,7 +49,7 @@
     }
   },
   "keywords": [
-    "HtmlLayoutKit"
+    "FoosRating"
   ],
   "license": "UNLICENSED",
   "lint-staged": {
@@ -60,11 +60,11 @@
       "eslint --fix"
     ]
   },
-  "name": "html-layout-kit",
+  "name": "foos-rating",
   "private": true,
   "repository": {
     "type": "git",
-    "url": "git@github.com:SuhushinAS/html-layout-kit.git"
+    "url": "git@github.com:SuhushinAS/foos-rating.git"
   },
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack --progress --mode=production",

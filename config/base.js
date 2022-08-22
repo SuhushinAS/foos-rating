@@ -20,7 +20,7 @@ module.exports = (options) => {
     output: {
       clean: true,
       filename: '[name].min.js',
-      library: ['htmlLayoutKit'],
+      library: ['foosRating'],
       path: options.dist,
       publicPath: '/',
     },

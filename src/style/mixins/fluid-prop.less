@@ -9,6 +9,16 @@
   }
 }
 
+.fluid-prop-2x(@prop, @p-1, @p-2, @s-1, @s-2) {
+  .fluid-prop(@prop, @p-1, @s-1, @p-2, .prev-size(@s-2)[]);
+
+  .prop(@prop, @p-2);
+
+  @media (max-width: .prev-size(@s-1)[]) {
+    .prop(@prop, @p-1);
+  }
+}
+
 .fluid-prop-sm(@prop, @p-1, @p-2) {
-  .fluid-prop(@prop, @p-1, @size-sm-min, @p-2, @size-sm-max);
+  .fluid-prop-2x(@prop, @p-1, @p-2, @size-sm-min, @size-xl-min);
 }

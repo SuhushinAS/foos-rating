@@ -1,4 +1,4 @@
-# HTML Layout kit
+# Foos Rating
 
 Окружение для создания HTML вёрстки
 
