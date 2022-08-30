@@ -5,13 +5,18 @@ module.exports = (options) => {
 
   return {
     bail: isProd,
-    devServer: isProd
-      ? {}
-      : {
+    devServer: {
           historyApiFallback: true,
           host: '0.0.0.0',
           hot: true,
           port: 8000,
+          proxy: {
+            '/api/*': {
+              changeOrigin: true,
+              secure: false,
+              target: 'https://tsk.gear54.me',
+            }
+          },
           static: options.public,
         },
     devtool: isProd ? false : 'eval-source-map',

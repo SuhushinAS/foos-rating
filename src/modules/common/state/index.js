@@ -2,14 +2,12 @@ const stateKey = 'foos-rating-state';
 
 const defaultState = {
   favorite: {},
-  players: {
-    data: {},
-    list: [],
-  },
+  isLoading: undefined,
+  ratings: [],
   view: 'full',
 };
 
-class State {
+class Store {
   state;
 
   /**
@@ -17,25 +15,29 @@ class State {
    * @return {void}
    */
   constructor() {
-    this.initState();
+    this.setState(this.getInitState());
   }
 
-  initState() {
+  getInitState() {
     const stateString = localStorage.getItem(stateKey);
 
     if (stateString) {
       try {
-        const state = JSON.parse(stateString);
-        this.setState(state);
+        return JSON.parse(stateString);
       } catch (error) {
         console.error(error);
       }
     }
 
-    this.setState(defaultState);
+    return defaultState;
   }
 
-  onState() {
+  onState(state) {
+    document.dispatchEvent(
+      new CustomEvent('storeStateUpdate', {
+        detail: state,
+      })
+    );
   }
 
   setState(state) {
@@ -49,4 +51,4 @@ class State {
   }
 }
 
-export const state = new State();
+export const store = new Store();
