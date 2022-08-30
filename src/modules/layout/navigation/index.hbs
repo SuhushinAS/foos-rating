@@ -1,14 +1,22 @@
 <div class="navigation">
-  <button class="navigation__item">
-    🏠
-  </button>
-  <button class="navigation__item">
-    📆
-  </button>
-  <button class="navigation__item">
-    ⭐
-  </button>
-  <button class="navigation__item">
-    🔍
-  </button>
+  <div class="navigation__item">
+    {{#> modules/layout/navigation-item/index name="view" value="home" }}
+      🏠
+    {{/ modules/layout/navigation-item/index }}
+  </div>
+  <div class="navigation__item">
+    {{#> modules/layout/navigation-item/index name="view" value="last" }}
+      📆
+    {{/ modules/layout/navigation-item/index }}
+  </div>
+  <div class="navigation__item">
+    {{#> modules/layout/navigation-item/index name="view" value="favorite" }}
+      ⭐
+    {{/ modules/layout/navigation-item/index }}
+  </div>
+  <div class="navigation__item">
+    {{#> modules/layout/navigation-item/index name="view" value="search" }}
+      🔍
+    {{/ modules/layout/navigation-item/index }}
+  </div>
 </div>
