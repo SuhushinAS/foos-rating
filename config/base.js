@@ -9,7 +9,7 @@ module.exports = (options) => {
           historyApiFallback: true,
           host: '0.0.0.0',
           hot: true,
-          port: 8000,
+          port: process.env.PORT || 8000,
           proxy: {
             '/api/*': {
               changeOrigin: true,
