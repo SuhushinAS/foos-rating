@@ -1,19 +1,19 @@
 <div class="navigation">
   <div class="navigation__item">
     {{#> modules/layout/navigation-item/index name="view" value=navigation.home }}
-      🏠
+      {{> modules/common/svg-icon/index src="icons/home.svg" }}
     {{/ modules/layout/navigation-item/index }}
   </div>
   <div class="navigation__item">
     {{#> modules/layout/navigation-item/index name="view" value=navigation.last }}
-      📆
+      {{> modules/common/svg-icon/index src="icons/calendar-o.svg" }}
     {{/ modules/layout/navigation-item/index }}
   </div>
-  <!--<div class="navigation__item">
+  <div class="navigation__item">
     {{#> modules/layout/navigation-item/index name="view" value=navigation.favorite }}
-      ⭐
+      {{> modules/common/svg-icon/index src="icons/star.svg" }}
     {{/ modules/layout/navigation-item/index }}
-  </div>-->
+  </div>
   <!--<div class="navigation__item">
     {{#> modules/layout/navigation-item/index name="view" value=navigation.search }}
       🔍

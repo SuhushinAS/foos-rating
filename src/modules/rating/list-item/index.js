@@ -1,16 +1,2 @@
-import {component} from 'utils/component';
+import 'modules/rating/list-item-favorite';
 import './style.less';
-
-component(
-  '.example-default',
-  class {
-    /**
-     * Конструктор класса для примера.
-     * @param {*} root Элемент.
-     * @return {void}
-     */
-    constructor(root) {
-      this.root = root;
-    }
-  }
-);

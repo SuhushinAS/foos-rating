@@ -1,10 +1,11 @@
-import {component} from 'utils/component';
 import {store} from 'modules/common/state';
-import './style.less';
-import {attachEvent} from 'utils/event';
-import listLoader from 'modules/rating/list-loader/index.hbs';
-import listItem from 'modules/rating/list-item/index.hbs';
 import navigation from 'modules/layout/navigation/data.json';
+import 'modules/rating/list-item';
+import listItem from 'modules/rating/list-item/index.hbs';
+import listLoader from 'modules/rating/list-loader/index.hbs';
+import {component} from 'utils/component';
+import {attachEvent} from 'utils/event';
+import './style.less';
 
 component(
   '.rating-list',
@@ -19,7 +20,25 @@ component(
       this.load();
       this.render();
       attachEvent(document, 'storeStateUpdate', this.render);
+      attachEvent(root, 'change', this.onChange);
     }
+
+    onChange = (e) => {
+      const radio = e.target.closest('.rating-list-item-favorite__radio');
+
+      if (radio) {
+        const [id, value] = radio.value.split('-')
+        store.updateState((prev) => {
+          return {
+            ...prev,
+            favorite: {
+              ...prev.favorite,
+              [id]: !!(+value),
+            },
+          };
+        });
+      }
+    };
 
     load() {
       store.updateState((prev) => {
@@ -42,16 +61,25 @@ component(
     }
 
     getRatings() {
-      const {ratings, view} = store.state;
+      const {favorite, ratings, view} = store.state;
 
       if (view === navigation.last) {
         return ratings.filter(this.filterLast);
       }
 
-      return ratings;
+      if (view === navigation.favorite) {
+        return ratings.filter(this.filterFavorite);
+      }
+
+      return ratings.map((rating) => ({
+        ...rating,
+        isFavorite: favorite[rating.id],
+      }));
     }
 
-    filterLast = ({wasInLastEvent}) => wasInLastEvent;
+    filterFavorite = (rating) => store.state.favorite[rating.id];
+
+    filterLast = (rating) => rating.wasInLastEvent;
 
     render = () => {
       this.root.innerHTML = this.getContent();
