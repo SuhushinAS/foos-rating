@@ -1,7 +1,11 @@
 @import (reference) 'src/style/mixins';
 
 .footer {
-  background-color: @c-gray-1;
-  border-top: 1px solid @c-gray-5;
-  color: @c-gray-6;
+  @blur: 2px;
+  @offset: 2 * @blur;
+
+  background-color: @c-black-10;
+  box-shadow: 0 @blur @blur @offset @c-black-6;
+  position: relative;
+  z-index: 1;
 }

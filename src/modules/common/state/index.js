@@ -4,7 +4,7 @@ const defaultState = {
   favorite: {},
   isLoading: undefined,
   ratings: [],
-  view: 'full',
+  view: 'home',
 };
 
 class Store {

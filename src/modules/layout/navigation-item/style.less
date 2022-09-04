@@ -7,15 +7,19 @@
 
   &__label {
     .fluid-prop-sm(padding, 8px, 16px);
+    .fluid-prop-sm(width, 64px, 96px);
     .font-fluid(24px, 24px, 32px, 32px);
 
     cursor: pointer;
     display: block;
+    text-align: center;
     transition: all 300ms ease;
   }
 
   &__radio:checked ~ &__label {
-    .fluid-prop-sm(padding, 0px, 0px);
-    .font-fluid(40px, 40px, 64px, 64px);
+    .fluid-prop-sm(padding, 4px, 8px);
+    .font-fluid(32px, 32px, 48px, 48px);
+
+    transition: all 100ms ease;
   }
 }
