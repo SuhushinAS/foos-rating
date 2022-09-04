@@ -4,6 +4,7 @@ import './style.less';
 import {attachEvent} from 'utils/event';
 import listLoader from 'modules/rating/list-loader/index.hbs';
 import listItem from 'modules/rating/list-item/index.hbs';
+import navigation from 'modules/layout/navigation/data.json';
 
 component(
   '.rating-list',
@@ -30,14 +31,30 @@ component(
       fetch('/api/ratings').then(this.getJSON).then(this.onGetList);
     }
 
-    render = () => {
-      const {isLoading, ratings} = store.state;
+    getContent() {
+      const {isLoading} = store.state;
 
       if (isLoading) {
-        this.root.innerHTML = listLoader();
-      } else {
-        this.root.innerHTML = ratings.map(listItem).join('');
+        return listLoader();
       }
+
+      return this.getRatings().map(listItem).join('');
+    }
+
+    getRatings() {
+      const {ratings, view} = store.state;
+
+      if (view === navigation.last) {
+        return ratings.filter(this.filterLast);
+      }
+
+      return ratings;
+    }
+
+    filterLast = ({wasInLastEvent}) => wasInLastEvent;
+
+    render = () => {
+      this.root.innerHTML = this.getContent();
     };
 
     getJSON = (response) => response.json();
