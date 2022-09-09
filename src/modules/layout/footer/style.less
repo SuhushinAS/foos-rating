@@ -1,8 +1,8 @@
 @import (reference) 'src/style/mixins';
 
 .footer {
-  @blur: 2px;
-  @offset: 2 * @blur;
+  @blur: 10px;
+  @offset: @blur;
 
   background-color: @c-black-10;
   box-shadow: 0 @blur @blur @offset @c-black-6;
