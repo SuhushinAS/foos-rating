@@ -40,14 +40,33 @@ class Store {
     );
   }
 
+  onStateKey(key, state) {
+    this.onState(state);
+    document.dispatchEvent(
+      new CustomEvent(this.getEvent(key), {
+        detail: state,
+      })
+    );
+  }
+
   setState(state) {
     this.state = state;
-    localStorage.setItem(stateKey, JSON.stringify(state));
+    localStorage.setItem(stateKey, JSON.stringify(this.state));
     this.onState(state);
   }
 
-  updateState(onState) {
-    this.setState(onState(this.state));
+  setStateKey(key, state) {
+    this.state[key] = state;
+    localStorage.setItem(stateKey, JSON.stringify(this.state));
+    this.onStateKey(key, state);
+  }
+
+  updateStateKey(key, onState) {
+    this.setStateKey(key, onState(this.state[key]));
+  }
+
+  getEvent(key) {
+    return `storeStateUpdateKey.${key}`;
   }
 }
 

@@ -17,11 +17,12 @@ component(
 
       this.render();
 
-      attachEvent(document, 'storeStateUpdate', this.render);
+      attachEvent(document, store.getEvent('view'), this.render);
       attachEvent(this.radio, 'change', this.onChange);
     }
 
     render = () => {
+      console.log('render');
       const {view} = store.state;
 
       if (this.radio.value === view && !this.radio.checked) {
@@ -30,12 +31,7 @@ component(
     };
 
     onChange = () => {
-      store.updateState((prev) => {
-        return {
-          ...prev,
-          view: this.radio.value,
-        };
-      });
+      store.updateStateKey('view', () => this.radio.value);
     };
   }
 );

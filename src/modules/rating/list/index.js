@@ -19,7 +19,9 @@ component(
       this.root = root;
       this.load();
       this.render();
-      attachEvent(document, 'storeStateUpdate', this.render);
+      attachEvent(document, store.getEvent('isLoading'), this.render);
+      attachEvent(document, store.getEvent('ratings'), this.render);
+      attachEvent(document, store.getEvent('view'), this.render);
       attachEvent(root, 'change', this.onChange);
     }
 
@@ -27,26 +29,16 @@ component(
       const radio = e.target.closest('.rating-list-item-favorite__radio');
 
       if (radio) {
-        const [id, value] = radio.value.split('-')
-        store.updateState((prev) => {
-          return {
-            ...prev,
-            favorite: {
-              ...prev.favorite,
-              [id]: !!(+value),
-            },
-          };
-        });
+        const [id, value] = radio.value.split('-');
+        store.updateStateKey('favorite', (prev) => ({
+          ...prev,
+          [id]: !!(+value),
+        }));
       }
     };
 
     load() {
-      store.updateState((prev) => {
-        return {
-          ...prev,
-          isLoading: true,
-        };
-      });
+      store.updateStateKey('isLoading', () => true);
       fetch('/api/ratings').then(this.getJSON).then(this.onGetList);
     }
 
@@ -88,13 +80,8 @@ component(
     getJSON = (response) => response.json();
 
     onGetList = ({ratings}) => {
-      store.updateState((prev) => {
-        return {
-          ...prev,
-          isLoading: false,
-          ratings: ratings.map((rating, index) => ({...rating, position: index + 1})),
-        };
-      });
+      store.updateStateKey('ratings', () => ratings);
+      store.updateStateKey('isLoading', () => false);
     };
   }
 );
