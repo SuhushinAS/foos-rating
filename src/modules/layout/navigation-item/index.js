@@ -1,11 +1,12 @@
 import './style.less';
 import {store} from 'modules/common/state';
 import {component} from 'utils/component';
-import {attachEvent} from 'utils/event';
 
 component(
   '.navigation-item',
   class {
+    events = [];
+
     /**
      * Конструктор класса для примера.
      * @param {*} root Элемент.
@@ -13,16 +14,29 @@ component(
      */
     constructor(root) {
       this.root = root;
-      this.radio = root.querySelector('.navigation-item__radio');
+      this.radio = this.root.querySelector('.navigation-item__radio');
+      this.events = [
+        [document, store.getEvent('view'), this.render],
+        [this.radio, 'change', this.onChange],
+      ];
 
+      this.init();
       this.render();
+    }
 
-      attachEvent(document, store.getEvent('view'), this.render);
-      attachEvent(this.radio, 'change', this.onChange);
+    init() {
+      this.events.forEach(([el, event, handler]) => {
+        el.addEventListener(event, handler);
+      });
+    }
+
+    destroy() {
+      this.events.forEach(([el, event, handler]) => {
+        el.removeEventListener(event, handler);
+      });
     }
 
     render = () => {
-      console.log('render');
       const {view} = store.state;
 
       if (this.radio.value === view && !this.radio.checked) {

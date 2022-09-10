@@ -4,12 +4,13 @@ import 'modules/rating/list-item';
 import listItem from 'modules/rating/list-item/index.hbs';
 import listLoader from 'modules/rating/list-loader/index.hbs';
 import {component} from 'utils/component';
-import {attachEvent} from 'utils/event';
 import './style.less';
 
 component(
   '.rating-list',
   class {
+    events = [];
+
     /**
      * Конструктор класса для примера.
      * @param {*} root Элемент.
@@ -17,12 +18,28 @@ component(
      */
     constructor(root) {
       this.root = root;
+      this.events = [
+        [document, store.getEvent('favorite'), this.render],
+        [document, store.getEvent('isLoading'), this.render],
+        [document, store.getEvent('ratings'), this.render],
+        [document, store.getEvent('view'), this.render],
+        [this.root, 'change', this.onChange],
+      ];
+      this.init();
       this.load();
       this.render();
-      attachEvent(document, store.getEvent('isLoading'), this.render);
-      attachEvent(document, store.getEvent('ratings'), this.render);
-      attachEvent(document, store.getEvent('view'), this.render);
-      attachEvent(root, 'change', this.onChange);
+    }
+
+    init() {
+      this.events.forEach(([el, event, handler]) => {
+        el.addEventListener(event, handler);
+      });
+    }
+
+    destroy() {
+      this.events.forEach(([el, event, handler]) => {
+        el.removeEventListener(event, handler);
+      });
     }
 
     onChange = (e) => {
@@ -43,17 +60,20 @@ component(
     }
 
     getContent() {
-      const {isLoading} = store.state;
+      const {favorite, isLoading} = store.state;
 
       if (isLoading) {
         return listLoader();
       }
 
-      return this.getRatings().map(listItem).join('');
+      return this.getRatings().map((rating) => ({
+        ...rating,
+        isFavorite: favorite[rating.id],
+      })).map(listItem).join('');
     }
 
     getRatings() {
-      const {favorite, ratings, view} = store.state;
+      const {ratings, view} = store.state;
 
       if (view === navigation.last) {
         return ratings.filter(this.filterLast);
@@ -63,10 +83,7 @@ component(
         return ratings.filter(this.filterFavorite);
       }
 
-      return ratings.map((rating) => ({
-        ...rating,
-        isFavorite: favorite[rating.id],
-      }));
+      return ratings;
     }
 
     filterFavorite = (rating) => store.state.favorite[rating.id];
@@ -74,13 +91,14 @@ component(
     filterLast = (rating) => rating.wasInLastEvent;
 
     render = () => {
+      // console.log('render');
       this.root.innerHTML = this.getContent();
     };
 
     getJSON = (response) => response.json();
 
     onGetList = ({ratings}) => {
-      store.updateStateKey('ratings', () => ratings);
+      store.updateStateKey('ratings', () => ratings.map((rating, index) => ({...rating, position: index + 1})));
       store.updateStateKey('isLoading', () => false);
     };
   }
