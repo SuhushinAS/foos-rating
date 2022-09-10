@@ -21,12 +21,12 @@ export class Base {
   init() {
   }
 
-  destroy() {
-    this.unbindEvents();
-  }
-
   bindEvents() {
     this.events.forEach(([el, event, handler]) => el.addEventListener(event, handler));
+  }
+
+  destroy() {
+    this.unbindEvents();
   }
 
   unbindEvents() {

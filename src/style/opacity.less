@@ -1,8 +1,10 @@
+@import (reference) 'mixins';
+
 .opacity {
   opacity: 1;
 
   &_animate {
-    transition: opacity 300ms ease;
+    transition: opacity @animation;
   }
 
   &_hidden {

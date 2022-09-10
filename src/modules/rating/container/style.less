@@ -1,3 +1,5 @@
+@import (reference) 'src/style/mixins';
+
 .rating-container {
   flex-basis: auto;
   flex-grow: 1;
@@ -13,10 +15,17 @@
 
   &__loader {
     bottom: 0;
-    display: none;
     left: 0;
+    opacity: 1;
     position: absolute;
     right: 0;
     top: 0;
+    transition: opacity @animation, bottom 0s linear 0s;
+
+    &_hide {
+      opacity: 0;
+      bottom: 100%;
+      transition: opacity @animation, bottom 0s linear @animation-time;
+    }
   }
 }
