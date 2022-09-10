@@ -2,14 +2,8 @@
   <div class="layout__header">
     {{#> layout-header}}{{/layout-header}}
   </div>
-  <div class="layout__scroll">
-    {{#> modules/common/scroll/index }}
-      <div class="layout__inner">
-        <div class="layout__body">
-          {{> @partial-block }}
-        </div>
-      </div>
-    {{/ modules/common/scroll/index }}
+  <div class="layout__body">
+    {{> @partial-block }}
   </div>
   <div class="layout__footer">
     {{#> layout-footer}}{{/layout-footer}}

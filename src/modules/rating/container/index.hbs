@@ -1,6 +1,8 @@
 <div class="rating-container">
   <div class="rating-container__list">
-    {{> modules/rating/list/index }}
+    {{#> modules/common/scroll/index }}
+      {{> modules/rating/list/index }}
+    {{/ modules/common/scroll/index }}
   </div>
   <div class="rating-container__loader">
     {{> modules/rating/list-loader/index }}

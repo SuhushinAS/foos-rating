@@ -1,4 +1,5 @@
 import {Base} from 'modules/common/base';
+import 'modules/common/scroll';
 import {store} from 'modules/common/state';
 import 'modules/rating/list';
 import 'modules/rating/list-loader';
