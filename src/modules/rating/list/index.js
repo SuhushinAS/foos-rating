@@ -1,3 +1,4 @@
+import {Base} from 'modules/common/base';
 import {store} from 'modules/common/state';
 import navigation from 'modules/layout/navigation/data.json';
 import 'modules/rating/list-item';
@@ -8,16 +9,14 @@ import './style.less';
 
 component(
   '.rating-list',
-  class {
-    events = [];
-
+  class extends Base {
     /**
      * Конструктор класса для примера.
      * @param {*} root Элемент.
      * @return {void}
      */
     constructor(root) {
-      this.root = root;
+      super(root);
       this.events = [
         [document, store.getEvent('favorite'), this.render],
         [document, store.getEvent('isLoading'), this.render],
@@ -25,21 +24,9 @@ component(
         [document, store.getEvent('view'), this.render],
         [this.root, 'change', this.onChange],
       ];
-      this.init();
+      this.bindEvents();
       this.load();
       this.render();
-    }
-
-    init() {
-      this.events.forEach(([el, event, handler]) => {
-        el.addEventListener(event, handler);
-      });
-    }
-
-    destroy() {
-      this.events.forEach(([el, event, handler]) => {
-        el.removeEventListener(event, handler);
-      });
     }
 
     onChange = (e) => {
@@ -91,7 +78,6 @@ component(
     filterLast = (rating) => rating.wasInLastEvent;
 
     render = () => {
-      // console.log('render');
       this.root.innerHTML = this.getContent();
     };
 

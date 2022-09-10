@@ -1,10 +1,11 @@
 import './style.less';
+import {Base} from 'modules/common/base';
 import {store} from 'modules/common/state';
 import {component} from 'utils/component';
 
 component(
   '.navigation-item',
-  class {
+  class extends Base {
     events = [];
 
     /**
@@ -13,27 +14,15 @@ component(
      * @return {void}
      */
     constructor(root) {
-      this.root = root;
+      super(root);
       this.radio = this.root.querySelector('.navigation-item__radio');
       this.events = [
         [document, store.getEvent('view'), this.render],
         [this.radio, 'change', this.onChange],
       ];
 
-      this.init();
+      this.bindEvents();
       this.render();
-    }
-
-    init() {
-      this.events.forEach(([el, event, handler]) => {
-        el.addEventListener(event, handler);
-      });
-    }
-
-    destroy() {
-      this.events.forEach(([el, event, handler]) => {
-        el.removeEventListener(event, handler);
-      });
     }
 
     render = () => {
