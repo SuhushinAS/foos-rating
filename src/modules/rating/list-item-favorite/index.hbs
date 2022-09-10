@@ -1,10 +1,9 @@
 <div class="rating-list-item-favorite">
-  <input{{# if isFavorite}} checked="checked"{{/if}} class="rating-list-item-favorite__radio" id="rating-list-item-favorite-{{id}}-1" name="rating-list-item-favorite-{{id}}" type="radio" value="{{id}}-1">
-  <label class="rating-list-item-favorite__label" for="rating-list-item-favorite-{{id}}-1">
+  <input class="rating-list-item-favorite__input" id="rating-list-item-favorite-{{id}}" name="rating-list-item-favorite-{{id}}" type="checkbox" value="{{id}}">
+  <label class="rating-list-item-favorite__label rating-list-item-favorite__label_off" for="rating-list-item-favorite-{{id}}">
     {{> modules/common/svg-icon/index src="icons/star-o.svg" }}
   </label>
-  <input{{# unless isFavorite}} checked="checked"{{/unless}} class="rating-list-item-favorite__radio" id="rating-list-item-favorite-{{id}}-0" name="rating-list-item-favorite-{{id}}" type="radio" value="{{id}}-0">
-  <label class="rating-list-item-favorite__label" for="rating-list-item-favorite-{{id}}-0">
+  <label class="rating-list-item-favorite__label rating-list-item-favorite__label_on" for="rating-list-item-favorite-{{id}}">
     {{> modules/common/svg-icon/index src="icons/star.svg" }}
   </label>
 </div>

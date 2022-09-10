@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
 
-  &__radio {
+  &__input {
     display: none;
   }
 
@@ -13,7 +13,11 @@
     line-height: 0;
   }
 
-  &__radio:checked + &__label {
+  &__input:checked ~ &__label_off {
+    display: none;
+  }
+
+  &__input:not(:checked) ~ &__label_on {
     display: none;
   }
 }

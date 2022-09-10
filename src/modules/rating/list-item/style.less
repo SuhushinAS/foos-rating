@@ -1,2 +1,11 @@
+@import (reference) 'src/style/mixins';
+
 .rating-list-item {
+  &:nth-child(even) {
+    background-color: @c-gray-9;
+  }
+
+  &__col {
+    padding: 0;
+  }
 }

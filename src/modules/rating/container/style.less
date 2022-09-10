@@ -20,12 +20,12 @@
     position: absolute;
     right: 0;
     top: 0;
-    transition: opacity @animation, bottom 0s linear 0s;
+    transition: opacity @animation, visibility 0s linear 0s;
 
     &_hide {
       opacity: 0;
-      bottom: 100%;
-      transition: opacity @animation, bottom 0s linear @animation-time;
+      transition: opacity @animation, visibility 0s linear @animation-time;
+      visibility: collapse;
     }
   }
 }

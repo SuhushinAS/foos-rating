@@ -2,6 +2,7 @@ import {Base} from 'modules/common/base';
 import {store} from 'modules/common/state';
 import navigation from 'modules/layout/navigation/data.json';
 import 'modules/rating/list-item';
+import {RatingListItem} from 'modules/rating/list-item';
 import listItem from 'modules/rating/list-item/index.hbs';
 import {component} from 'utils/component';
 import './style.less';
@@ -24,12 +25,16 @@ component(
       [navigation.favorite]: (rating) => store.state.favorite[rating.id],
     };
 
+    ratings = [];
+    ratingItems = [];
+
     render() {
-      this.root.innerHTML = store.state.ratings
+      this.ratingItems.forEach(this.ratingItemDestroy);
+      this.ratings = store.state.ratings
         .filter(this.filterView)
-        .map(this.getRatingWithFavorite)
-        .map(listItem)
-        .join('');
+        .map(this.getRatingWithFavorite);
+      this.root.innerHTML = this.ratings.map(listItem).join('');
+      this.ratingItems = [...this.root.querySelectorAll('.rating-list-item')].map(this.ratingItemCreate);
     }
 
     filterView = (rating) => {
@@ -40,30 +45,32 @@ component(
 
     getRatingWithFavorite = (rating) => ({...rating, isFavorite: store.state.favorite[rating.id]});
 
+    ratingItemCreate = (ratingItemRoot, index) => {
+      const ratingItem = new RatingListItem(ratingItemRoot);
+
+      ratingItem.initRating(this.ratings[index]);
+
+      return ratingItem;
+    };
+
+    ratingItemDestroy = (ratingItem) => ratingItem.destroy();
+
     init() {
       super.init();
 
       const render = this.render.bind(this);
-      const onChange = this.onChange.bind(this);
 
       this.events = [
         [document, store.getEvent('favorite'), render],
         [document, store.getEvent('ratings'), render],
         [document, store.getEvent('view'), render],
-        [this.root, 'change', onChange],
       ];
     }
 
-    onChange(e) {
-      const radio = e.target.closest('.rating-list-item-favorite__radio');
+    destroy() {
+      super.destroy();
 
-      if (radio) {
-        const [id, value] = radio.value.split('-');
-        store.updateStateKey('favorite', (prev) => ({
-          ...prev,
-          [id]: !!(+value),
-        }));
-      }
+      this.ratingItems.forEach(this.ratingItemDestroy);
     }
   }
 );
