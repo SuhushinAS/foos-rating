@@ -19,13 +19,11 @@ component(
       super(root);
       this.events = [
         [document, store.getEvent('favorite'), this.render],
-        [document, store.getEvent('isLoading'), this.render],
         [document, store.getEvent('ratings'), this.render],
         [document, store.getEvent('view'), this.render],
         [this.root, 'change', this.onChange],
       ];
       this.bindEvents();
-      this.load();
       this.render();
     }
 
@@ -41,21 +39,10 @@ component(
       }
     };
 
-    load() {
-      store.updateStateKey('isLoading', () => true);
-      fetch('/api/ratings').then(this.getJSON).then(this.onGetList);
-    }
-
     getContent() {
-      const {favorite, isLoading} = store.state;
-
-      if (isLoading) {
-        return listLoader();
-      }
-
       return this.getRatings().map((rating) => ({
         ...rating,
-        isFavorite: favorite[rating.id],
+        isFavorite: store.state.favorite[rating.id],
       })).map(listItem).join('');
     }
 
@@ -79,13 +66,6 @@ component(
 
     render = () => {
       this.root.innerHTML = this.getContent();
-    };
-
-    getJSON = (response) => response.json();
-
-    onGetList = ({ratings}) => {
-      store.updateStateKey('ratings', () => ratings.map((rating, index) => ({...rating, position: index + 1})));
-      store.updateStateKey('isLoading', () => false);
     };
   }
 );
