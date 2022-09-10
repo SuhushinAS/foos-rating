@@ -1,3 +1,5 @@
+@import (reference) 'src/style/mixins';
+
 .rating-list-item-favorite {
   display: flex;
   align-items: center;
@@ -7,10 +9,12 @@
   }
 
   &__label {
+    color: @c-warning;
     cursor: pointer;
     display: inline-block;
     font-size: 24px;
     line-height: 0;
+    padding: 4px;
   }
 
   &__input:checked ~ &__label_off {
