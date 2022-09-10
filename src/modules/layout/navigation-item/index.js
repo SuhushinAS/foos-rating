@@ -25,7 +25,6 @@ component(
       this.radio = this.root.querySelector('.navigation-item__radio');
 
       this.events = [
-        ...this.events,
         [document, store.getEvent('view'), render],
         [this.radio, 'change', onChange],
       ];
@@ -40,6 +39,7 @@ component(
     }
 
     onChange() {
+      console.log(this.radio.value);
       store.updateStateKey('view', () => this.radio.value);
     }
   }

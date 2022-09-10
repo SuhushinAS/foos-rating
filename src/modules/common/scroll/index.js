@@ -41,9 +41,7 @@ class Scroll extends Base {
   destroy() {
     super.destroy();
 
-    this.scrollList.forEach((baron) => {
-      baron.dispose();
-    });
+    this.scrollList.forEach((baron) => baron.dispose());
   }
 }
 

@@ -26,7 +26,6 @@ component(
       const onChange = this.onChange.bind(this);
 
       this.events = [
-        ...this.events,
         [document, store.getEvent('favorite'), render],
         [document, store.getEvent('ratings'), render],
         [document, store.getEvent('view'), render],
@@ -72,6 +71,7 @@ component(
     filterLast = (rating) => rating.wasInLastEvent;
 
     render() {
+      console.log('render');
       this.root.innerHTML = this.getContent();
     }
   }

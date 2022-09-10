@@ -1,14 +1,8 @@
-import {store} from 'modules/common/state';
-
 /**
  * Class Scroll.
  * Класс для примера.
  */
 export class Base {
-  root = null;
-
-  events = [];
-
   /**
    * Конструктор класса для примера.
    * @param {*} root Элемент.
@@ -20,12 +14,11 @@ export class Base {
     this.bindEvents();
   }
 
-  init() {
-    const destroy = this.destroy.bind(this);
-    this.events = [
-      [document, 'destroy', destroy],
-    ];
-  }
+  root = null;
+
+  events = [];
+
+  init() {}
 
   destroy() {
     this.unbindEvents();
