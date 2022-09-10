@@ -36,30 +36,21 @@ component(
     init() {
       super.init();
 
-      const onClick = this.onClick.bind(this);
       const onLoading = this.onLoading.bind(this);
 
       this.loader = this.root.querySelector('.rating-container__loader');
 
       this.events = [
-        [this.root, 'click', onClick],
         [document, store.getEvent('isLoading'), onLoading],
       ];
     }
 
-    onClick(e) {
-      console.log(e);
-      this.loader.classList.toggle('rating-container__loader_hide');
-    }
-
-    onLoading(e) {
-      const isLoading = e.detail;
-      if (isLoading) {
+    onLoading({detail}) {
+      if (detail) {
         this.loader.classList.remove('rating-container__loader_hide');
       } else {
         this.loader.classList.add('rating-container__loader_hide');
       }
-      console.log(isLoading);
     }
   }
 );
