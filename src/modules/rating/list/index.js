@@ -3,7 +3,6 @@ import {store} from 'modules/common/state';
 import navigation from 'modules/layout/navigation/data.json';
 import 'modules/rating/list-item';
 import listItem from 'modules/rating/list-item/index.hbs';
-import listLoader from 'modules/rating/list-loader/index.hbs';
 import {component} from 'utils/component';
 import './style.less';
 
@@ -17,17 +16,25 @@ component(
      */
     constructor(root) {
       super(root);
-      this.events = [
-        [document, store.getEvent('favorite'), this.render],
-        [document, store.getEvent('ratings'), this.render],
-        [document, store.getEvent('view'), this.render],
-        [this.root, 'change', this.onChange],
-      ];
-      this.bindEvents();
       this.render();
     }
 
-    onChange = (e) => {
+    init() {
+      super.init();
+
+      const render = this.render.bind(this);
+      const onChange = this.onChange.bind(this);
+
+      this.events = [
+        ...this.events,
+        [document, store.getEvent('favorite'), render],
+        [document, store.getEvent('ratings'), render],
+        [document, store.getEvent('view'), render],
+        [this.root, 'change', onChange],
+      ];
+    }
+
+    onChange(e) {
       const radio = e.target.closest('.rating-list-item-favorite__radio');
 
       if (radio) {
@@ -37,7 +44,7 @@ component(
           [id]: !!(+value),
         }));
       }
-    };
+    }
 
     getContent() {
       return this.getRatings().map((rating) => ({
@@ -64,8 +71,8 @@ component(
 
     filterLast = (rating) => rating.wasInLastEvent;
 
-    render = () => {
+    render() {
       this.root.innerHTML = this.getContent();
-    };
+    }
   }
 );

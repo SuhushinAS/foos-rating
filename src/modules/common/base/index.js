@@ -1,3 +1,5 @@
+import {store} from 'modules/common/state';
+
 /**
  * Class Scroll.
  * Класс для примера.
@@ -14,6 +16,15 @@ export class Base {
    */
   constructor(root) {
     this.root = root;
+    this.init();
+    this.bindEvents();
+  }
+
+  init() {
+    const destroy = this.destroy.bind(this);
+    this.events = [
+      [document, 'destroy', destroy],
+    ];
   }
 
   destroy() {

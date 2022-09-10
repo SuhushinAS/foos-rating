@@ -15,7 +15,6 @@ component(
      */
     constructor(root) {
       super(root);
-      this.bindEvents();
       this.load();
     }
 
