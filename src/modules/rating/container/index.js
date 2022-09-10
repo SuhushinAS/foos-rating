@@ -26,8 +26,10 @@ component(
     getJSON = (response) => response.json();
 
     onGetList = ({ratings}) => {
-      store.updateStateKey('ratings', () => ratings.map((rating, index) => ({...rating, position: index + 1})));
+      store.updateStateKey('ratings', () => ratings.map(this.getRatingWithPosition));
       store.updateStateKey('isLoading', () => false);
     };
+
+    getRatingWithPosition = (rating, index) => ({...rating, position: index + 1});
   }
 );

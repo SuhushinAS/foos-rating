@@ -39,7 +39,6 @@ component(
     }
 
     onChange() {
-      console.log(this.radio.value);
       store.updateStateKey('view', () => this.radio.value);
     }
   }

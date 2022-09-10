@@ -19,6 +19,11 @@ component(
       this.render();
     }
 
+    filterViewMap = {
+      [navigation.last]: (rating) => rating.wasInLastEvent,
+      [navigation.favorite]: (rating) => store.state.favorite[rating.id],
+    };
+
     init() {
       super.init();
 
@@ -45,34 +50,23 @@ component(
       }
     }
 
-    getContent() {
-      return this.getRatings().map((rating) => ({
-        ...rating,
-        isFavorite: store.state.favorite[rating.id],
-      })).map(listItem).join('');
-    }
-
-    getRatings() {
-      const {ratings, view} = store.state;
-
-      if (view === navigation.last) {
-        return ratings.filter(this.filterLast);
-      }
-
-      if (view === navigation.favorite) {
-        return ratings.filter(this.filterFavorite);
-      }
-
-      return ratings;
-    }
-
-    filterFavorite = (rating) => store.state.favorite[rating.id];
-
-    filterLast = (rating) => rating.wasInLastEvent;
-
     render() {
-      console.log('render');
-      this.root.innerHTML = this.getContent();
+      this.root.innerHTML = store.state.ratings
+        .filter(this.filterView)
+        .map(this.getRatingWithFavorite)
+        .map(listItem)
+        .join('');
     }
+
+    filterView = (rating) => {
+      const filterView = this.filterViewMap[store.state.view] ?? (() => true);
+
+      return filterView(rating);
+    };
+
+    getRatingWithFavorite = (rating) => ({
+      ...rating,
+      isFavorite: store.state.favorite[rating.id],
+    });
   }
 );
