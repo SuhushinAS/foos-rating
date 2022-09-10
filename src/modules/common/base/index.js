@@ -18,7 +18,8 @@ export class Base {
 
   events = [];
 
-  init() {}
+  init() {
+  }
 
   destroy() {
     this.unbindEvents();

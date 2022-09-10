@@ -8,8 +8,6 @@ const defaultState = {
 };
 
 class Store {
-  state;
-
   /**
    * Конструктор класса для примера.
    * @return {void}
@@ -17,6 +15,8 @@ class Store {
   constructor() {
     this.setState(this.getInitState());
   }
+
+  state;
 
   getInitState() {
     const stateString = localStorage.getItem(stateKey);
