@@ -1,11 +1,11 @@
-<div
-    class="scroll {{#if scroll-direction}} scroll_{{scroll-direction}}{{/if}}"
-    data-direction="{{#if scroll-direction}}{{scroll-direction}}{{else}}v{{/if}}"
->
+<div class="scroll">
     <div class="scroll__scroller">
-        {{> @partial-block }}
+      {{> @partial-block }}
     </div>
-    <div class="scroll__track scroll__track_{{#if scroll-direction}}{{scroll-direction}}{{else}}v{{/if}}">
-        <div class="scroll__bar scroll__bar_{{#if scroll-direction}}{{scroll-direction}}{{else}}v{{/if}}"></div>
+    <div class="scroll__track scroll__track_v">
+        <div class="scroll__bar scroll__bar_v"></div>
+    </div>
+    <div class="scroll__track scroll__track_h">
+        <div class="scroll__bar scroll__bar_h"></div>
     </div>
 </div>

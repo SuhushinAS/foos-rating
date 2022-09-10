@@ -1,76 +1,93 @@
 @import (reference) 'src/style/mixins';
 
 .scroll {
-    height: 100%;
+  height: 100%;
+  position: relative;
+  width: 100%;
+
+  &__clipper {
+    overflow: hidden;
     position: relative;
+  }
+
+  &__scroller {
+    border: 0;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    height: 100%;
+    margin: 0;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: none;
+    overflow: scroll;
+    padding: 0;
     width: 100%;
+  }
 
-    &__clipper {
-        overflow: hidden;
-        position: relative;
+  &__track {
+    @offset: 0px;
+    @size: 6px;
+    //background-color: @c-black-8;
+    //border-radius: 16px;
+    display: none;
+    position: absolute;
+
+    &_h {
+      bottom: @offset;
+      height: @size - 2 * @offset;
+      right: @size - 2 * @offset;
+      left: @offset;
     }
 
-    &__scroller {
-        border: 0;
-        -moz-box-sizing: border-box;
-        box-sizing: border-box;
-        height: 100%;
-        margin: 0;
-        -webkit-overflow-scrolling: touch;
-        -ms-overflow-style: none;
-        overflow-x: hidden;
-        overflow-y: scroll;
-        padding: 0;
-        width: 100%;
+    &_v {
+      bottom: @size - 2 * @offset;
+      right: @offset;
+      top: @offset;
+      width: @size - 2 * @offset;
+    }
+  }
+
+  &__free {
+    bottom: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  &__bar {
+    position: relative;
+
+    &:after {
+      @offset: 0;
+      background-color: @c-black-6;
+      //border-radius: 16px;
+      bottom: @offset;
+      content: '';
+      display: block;
+      left: @offset;
+      position: absolute;
+      right: @offset;
+      top: @offset;
+      transition: background @animation, border-radius @animation, width @animation;
     }
 
-    &__track {
-        @offset: 3px;
-        @width: 16px - 2 * @offset;
-        background-color: @c-black-8;
-        border-radius: 16px;
-        bottom: @offset;
-        display: none;
-        position: absolute;
-        right: @offset;
-        top: @offset;
-        width: @width;
+    &_h {
+      height: 100% !important;
     }
 
-    &._scrollbar &__track {
-        display: block;
+    &_v {
+      width: 100% !important;
     }
+  }
 
-    &__free {
-        bottom: 0;
-        position: absolute;
-        right: 0;
-        top: 0;
-    }
+  &_scrollbar_h &__track_h {
+    display: block;
+  }
 
-    &__bar {
-        display: none;
-        position: relative;
-        &:after {
-            @offset: 2px;
-            background-color: @c-black-8;
-            border-radius: 16px;
-            bottom: @offset;
-            content: '';
-            display: block;
-            left: @offset;
-            position: absolute;
-            right: @offset;
-            top: @offset;
-            transition: background @animation, border-radius @animation, width @animation;
-        }
-    }
+  &_scrollbar_v &__track_v {
+    display: block;
+  }
 
-    &._scrollbar &__bar {
-        display: block;
-    }
-
-    &__control {
-        display: none;
-    }
+  &__control {
+    display: none;
+  }
 }

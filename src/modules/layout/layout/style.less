@@ -20,21 +20,15 @@
   }
 
   &__inner {
-    display: flex;
-    flex-basis: auto;
-    flex-direction: column;
-    flex-grow: 1;
+    display: table;
+    height: 100%;
+    width: 100%;
   }
 
   &__body {
     display: flex;
-    flex-basis: auto;
     flex-direction: column;
-    flex-grow: 1;
-    flex-shrink: 0;
-  }
-
-  &__main {
-    flex-grow: 1;
+    min-height: 100%;
+    min-width: 100%;
   }
 }
