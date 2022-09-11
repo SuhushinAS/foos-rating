@@ -1,33 +1,69 @@
+@import (reference) 'src/style/mixins';
+
 .rating-list {
+  display: flex;
+  flex-direction: column;
+  flex-basis: auto;
+  flex-grow: 1;
+
+  &__head {
+    @spread: 20px;
+    @blur: 20px;
+    @offset: -30px;
+
+    box-shadow: 0 @offset @blur @spread @c-primary-2;
+    position: relative;
+    z-index: 1;
+  }
+
+  &__body {
+    flex-basis: 0;
+    flex-grow: 1;
+    overflow: hidden;
+  }
 
   &__table {
     border-collapse: collapse;
     table-layout: fixed;
     width: 100%;
-    white-space: nowrap;
   }
 
   &__col {
-    padding: 0;
-
     @width-position: 32px;
     @width-position-change: 24px;
+    @width-position-head: @width-position + @width-position-change;
     @width-name: 128px;
     @width-rank: 64px;
     @width-value: 40px;
     @width-value-change: 24px;
+    @width-value-head: @width-value + @width-value-change;
     @width-favorite: 48px;
-    @width-total: @width-position-change + @width-name + @width-rank + @width-value-change;
+    @width-total: @width-position-head + @width-name + @width-rank + @width-value-head;
+
+    padding: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    &_head {
+      padding: 4px 0;
+    }
 
     &_position {
       min-width: @width-position;
       text-align: right;
-      width: @width-position;
+      width: percentage(@width-position / @width-total);
     }
 
     &_position-change {
       min-width: @width-position-change;
       width: percentage(@width-position-change / @width-total);
+    }
+
+    &_position-head {
+      min-width: @width-position-head;
+      text-align: center;
+      width: percentage(@width-position-head / @width-total);
     }
 
     &_name {
@@ -37,6 +73,7 @@
 
     &_rank {
       min-width: @width-rank;
+      text-align: center;
       text-transform: capitalize;
       width: percentage(@width-rank / @width-total);
     }
@@ -44,12 +81,18 @@
     &_value {
       min-width: @width-value;
       text-align: right;
-      width: @width-value;
+      width: percentage(@width-value / @width-total);
     }
 
     &_value-change {
       min-width: @width-value-change;
       width: percentage(@width-value-change / @width-total);
+    }
+
+    &_value-head {
+      min-width: @width-value-head;
+      text-align: center;
+      width: percentage(@width-value-head / @width-total);
     }
 
     &_favorite {

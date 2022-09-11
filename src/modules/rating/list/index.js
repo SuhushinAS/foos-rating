@@ -1,8 +1,9 @@
 import {Base} from 'modules/common/base';
+import 'modules/common/scroll';
 import {store} from 'modules/common/state';
 import navigation from 'modules/layout/navigation/data.json';
-import 'modules/rating/list-item';
 import {RatingListItem} from 'modules/rating/list-item';
+import 'modules/rating/list-item';
 import listItem from 'modules/rating/list-item/index.hbs';
 import {component} from 'utils/component';
 import './style.less';
@@ -17,7 +18,7 @@ component(
      */
     constructor(root) {
       super(root);
-      this.body = this.root.querySelector('.rating-list__body');
+      this.body = this.root.querySelector('.rating-list__table-body');
       this.render();
     }
 
