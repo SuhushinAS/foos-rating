@@ -1,6 +1,6 @@
-import './style.less';
 import {Base} from 'modules/common/base';
 import {store} from 'modules/common/state';
+import './style.less';
 
 export class RatingListItemFavorite extends Base {
   init() {
@@ -20,9 +20,5 @@ export class RatingListItemFavorite extends Base {
       ...prev,
       [value]: checked,
     }));
-  }
-
-  initFavorite(isFavorite) {
-    this.input.checked = isFavorite;
   }
 }

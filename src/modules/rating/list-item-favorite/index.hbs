@@ -1,5 +1,5 @@
 <div class="rating-list-item-favorite">
-  <input class="rating-list-item-favorite__input" id="rating-list-item-favorite-{{id}}" name="rating-list-item-favorite-{{id}}" type="checkbox" value="{{id}}">
+  <input{{#if isFavorite}} checked{{/if}} class="rating-list-item-favorite__input" id="rating-list-item-favorite-{{id}}" name="rating-list-item-favorite-{{id}}" type="checkbox" value="{{id}}">
   <label class="rating-list-item-favorite__label rating-list-item-favorite__label_off" for="rating-list-item-favorite-{{id}}">
     {{> modules/common/svg-icon/index src="icons/star-outline.svg" }}
   </label>

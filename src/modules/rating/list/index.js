@@ -6,8 +6,8 @@ import {RatingListItem} from 'modules/rating/list-item';
 import 'modules/rating/list-item';
 import listItem from 'modules/rating/list-item/index.hbs';
 import {component} from 'utils/component';
-import './style.less';
 import changeType from './changeType.json';
+import './style.less';
 
 component(
   '.rating-list',
@@ -29,6 +29,7 @@ component(
     };
 
     ratings = [];
+
     ratingItems = [];
 
     render() {
@@ -48,6 +49,7 @@ component(
 
     getRatingFormat = (rating) => ({
       ...rating,
+      isFavorite: store.state.favorite[rating.id],
       positionChange: this.getChange(rating.positionChange),
       positionChangeType: this.getChangeType(rating.positionChange),
       valueChange: this.getChange(rating.valueChange),
@@ -74,15 +76,15 @@ component(
       return changeType.none;
     }
 
-    ratingItemCreate = (ratingItemRoot, index) => {
-      const ratingItem = new RatingListItem(ratingItemRoot);
-
-      ratingItem.initRating(this.ratings[index]);
-
-      return ratingItem;
-    };
+    ratingItemCreate = (ratingItemRoot) => new RatingListItem(ratingItemRoot);
 
     ratingItemDestroy = (ratingItem) => ratingItem.destroy();
+
+    destroy() {
+      super.destroy();
+
+      this.ratingItems.forEach(this.ratingItemDestroy);
+    }
 
     init() {
       super.init();
@@ -94,12 +96,6 @@ component(
         [document, store.getEvent('ratings'), render],
         [document, store.getEvent('view'), render],
       ];
-    }
-
-    destroy() {
-      super.destroy();
-
-      this.ratingItems.forEach(this.ratingItemDestroy);
     }
   }
 );

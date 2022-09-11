@@ -1,9 +1,7 @@
 import {Base} from 'modules/common/base';
-import {store} from 'modules/common/state';
-import navigation from 'modules/layout/navigation/data.json';
 import 'modules/rating/list-item-favorite';
-import './style.less';
 import {RatingListItemFavorite} from 'modules/rating/list-item-favorite';
+import './style.less';
 
 export class RatingListItem extends Base {
   /**
@@ -20,11 +18,6 @@ export class RatingListItem extends Base {
   }
 
   rating = {};
-
-  initRating(rating) {
-    this.rating = rating;
-    this.favorite.initFavorite(store.state.favorite[rating.id]);
-  }
 
   destroy() {
     super.destroy();
