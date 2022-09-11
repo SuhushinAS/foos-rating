@@ -1,23 +1,27 @@
 <tr class="rating-list-item">
-  <td class="rating-list-item__col">
+  <td class="rating-list__col rating-list__col_position">
     {{position}}
+  </td>
+  <td class="rating-list__col rating-list__col_position-change">
     <sub>
       {{positionChange}}
     </sub>
   </td>
-  <td class="rating-list-item__col">
+  <td class="rating-list__col rating-list__col_name">
     {{name}}
   </td>
-  <td class="rating-list-item__col">
+  <td class="rating-list__col rating-list__col_rank">
     {{rank}}
   </td>
-  <td class="rating-list-item__col">
+  <td class="rating-list__col rating-list__col_value">
     {{value}}
+  </td>
+  <td class="rating-list__col rating-list__col_value-change">
     <sub>
       {{valueChange}}
     </sub>
   </td>
-  <td class="rating-list-item__col">
+  <td class="rating-list__col rating-list__col_favorite">
     {{> modules/rating/list-item-favorite/index id=id }}
   </td>
 </tr>

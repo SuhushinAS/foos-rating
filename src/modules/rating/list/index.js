@@ -17,6 +17,7 @@ component(
      */
     constructor(root) {
       super(root);
+      this.body = this.root.querySelector('.rating-list__body');
       this.render();
     }
 
@@ -32,9 +33,9 @@ component(
       this.ratingItems.forEach(this.ratingItemDestroy);
       this.ratings = store.state.ratings
         .filter(this.filterView)
-        .map(this.getRatingWithFavorite);
-      this.root.innerHTML = this.ratings.map(listItem).join('');
-      this.ratingItems = [...this.root.querySelectorAll('.rating-list-item')].map(this.ratingItemCreate);
+        .map(this.getRatingFormat);
+      this.body.innerHTML = this.ratings.map(listItem).join('');
+      this.ratingItems = [...this.body.querySelectorAll('.rating-list-item')].map(this.ratingItemCreate);
     }
 
     filterView = (rating) => {
@@ -43,7 +44,7 @@ component(
       return filterView(rating);
     };
 
-    getRatingWithFavorite = (rating) => ({...rating, isFavorite: store.state.favorite[rating.id]});
+    getRatingFormat = (rating) => ({...rating, isFavorite: store.state.favorite[rating.id]});
 
     ratingItemCreate = (ratingItemRoot, index) => {
       const ratingItem = new RatingListItem(ratingItemRoot);

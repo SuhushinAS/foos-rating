@@ -1,5 +1,60 @@
 .rating-list {
-  border-collapse: collapse;
-  width: 100%;
-  white-space: nowrap;
+
+  &__table {
+    border-collapse: collapse;
+    table-layout: fixed;
+    width: 100%;
+    white-space: nowrap;
+  }
+
+  &__col {
+    padding: 0;
+
+    @width-position: 32px;
+    @width-position-change: 24px;
+    @width-name: 128px;
+    @width-rank: 64px;
+    @width-value: 40px;
+    @width-value-change: 24px;
+    @width-favorite: 48px;
+    @width-total: @width-position-change + @width-name + @width-rank + @width-value-change;
+
+    &_position {
+      min-width: @width-position;
+      text-align: right;
+      width: @width-position;
+    }
+
+    &_position-change {
+      min-width: @width-position-change;
+      width: percentage(@width-position-change / @width-total);
+    }
+
+    &_name {
+      min-width: @width-name;
+      width: percentage(@width-name / @width-total);
+    }
+
+    &_rank {
+      min-width: @width-rank;
+      text-transform: capitalize;
+      width: percentage(@width-rank / @width-total);
+    }
+
+    &_value {
+      min-width: @width-value;
+      text-align: right;
+      width: @width-value;
+    }
+
+    &_value-change {
+      min-width: @width-value-change;
+      width: percentage(@width-value-change / @width-total);
+    }
+
+    &_favorite {
+      min-width: @width-favorite;
+      width: @width-favorite;
+    }
+  }
 }
