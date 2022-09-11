@@ -7,6 +7,7 @@ import 'modules/rating/list-item';
 import listItem from 'modules/rating/list-item/index.hbs';
 import {component} from 'utils/component';
 import './style.less';
+import changeType from './changeType.json';
 
 component(
   '.rating-list',
@@ -45,7 +46,33 @@ component(
       return filterView(rating);
     };
 
-    getRatingFormat = (rating) => ({...rating, isFavorite: store.state.favorite[rating.id]});
+    getRatingFormat = (rating) => ({
+      ...rating,
+      positionChange: this.getChange(rating.positionChange),
+      positionChangeType: this.getChangeType(rating.positionChange),
+      valueChange: this.getChange(rating.valueChange),
+      valueChangeType: this.getChangeType(rating.valueChange),
+    });
+
+    getChange(change) {
+      if (change > 0) {
+        return `+${change}`;
+      }
+
+      return `${change}`;
+    }
+
+    getChangeType(change) {
+      if (change > 0) {
+        return changeType.positive;
+      }
+
+      if (change < 0) {
+        return changeType.negative;
+      }
+
+      return changeType.none;
+    }
 
     ratingItemCreate = (ratingItemRoot, index) => {
       const ratingItem = new RatingListItem(ratingItemRoot);

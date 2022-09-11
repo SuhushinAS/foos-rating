@@ -46,7 +46,7 @@
     white-space: nowrap;
 
     &_head {
-      padding: 4px 0;
+      padding: 8px 0;
     }
 
     &_position {
@@ -98,6 +98,20 @@
     &_favorite {
       min-width: @width-favorite;
       width: @width-favorite;
+    }
+  }
+
+  &__change {
+    &_negative {
+      color: @c-error;
+    }
+
+    &_none {
+      display: none;
+    }
+
+    &_positive {
+      color: @c-success;
     }
   }
 }
