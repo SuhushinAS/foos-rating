@@ -92,7 +92,6 @@ component(
       const render = this.render.bind(this);
 
       this.events = [
-        [document, store.getEvent('favorite'), render],
         [document, store.getEvent('ratings'), render],
         [document, store.getEvent('view'), render],
       ];
