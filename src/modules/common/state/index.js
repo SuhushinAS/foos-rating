@@ -3,6 +3,7 @@ const stateKey = 'foos-rating-state';
 const defaultState = {
   favorite: {},
   isLoading: undefined,
+  lastEvent: {},
   ratings: [],
   view: 'home',
 };

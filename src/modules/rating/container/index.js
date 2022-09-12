@@ -25,7 +25,8 @@ component(
 
     getJSON = (response) => response.json();
 
-    onGetList = ({ratings}) => {
+    onGetList = ({lastEvent, ratings}) => {
+      store.updateStateKey('lastEvent', () => lastEvent);
       store.updateStateKey('ratings', () => ratings.map(this.getRatingWithPosition));
       store.updateStateKey('isLoading', () => false);
     };

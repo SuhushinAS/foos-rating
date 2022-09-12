@@ -1,12 +1,15 @@
 @import (reference) 'src/style/mixins';
 
-.footer {
+.header {
   @spread: 20px;
   @blur: 20px;
-  @offset: 30px;
+  @offset: -30px;
 
   background-color: @c-primary-7;
-  box-shadow: 0 @offset @blur @spread @c-primary-2;
+  color: @c-primary-2;
+  font-size: 36px;
+  line-height: 48px;
+  padding: 8px;
   position: relative;
   z-index: 1;
 }

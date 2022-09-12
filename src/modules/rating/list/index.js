@@ -1,7 +1,7 @@
 import {Base} from 'modules/common/base';
 import 'modules/common/scroll';
 import {store} from 'modules/common/state';
-import navigation from 'modules/layout/navigation/data.json';
+import viewType from 'modules/layout/navigation/viewType.json';
 import {RatingListItem} from 'modules/rating/list-item';
 import 'modules/rating/list-item';
 import listItem from 'modules/rating/list-item/index.hbs';
@@ -24,8 +24,8 @@ component(
     }
 
     filterViewMap = {
-      [navigation.last]: (rating) => rating.wasInLastEvent,
-      [navigation.favorite]: (rating) => store.state.favorite[rating.id],
+      [viewType.last]: (rating) => rating.wasInLastEvent,
+      [viewType.favorite]: (rating) => store.state.favorite[rating.id],
     };
 
     ratings = [];
