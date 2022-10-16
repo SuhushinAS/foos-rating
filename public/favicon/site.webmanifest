@@ -1,5 +1,5 @@
 {
-  "background_color": "#1e1e1e",
+  "background_color": "#222423",
   "display": "standalone",
   "icons": [
     {
@@ -51,5 +51,5 @@
   "name": "Foos Rating",
   "short_name": "Foos Rating",
   "start_url": "/",
-  "theme_color": "#1e1e1e"
+  "theme_color": "#222423"
 }

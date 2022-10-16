@@ -1,21 +1,18 @@
 import {Base} from 'modules/common/base';
 import {store} from 'modules/common/state';
+import schemeType from 'modules/layout/scheme/schemeType.json';
 import {component} from 'utils/component';
-import schemeType from './schemeType.json';
+
+const classNames = {
+  [schemeType.dark]: 'html_dark',
+  [schemeType.light]: 'html_light',
+};
 
 component(
   '.html',
   class extends Base {
     get scheme() {
-      if (false !== store.state.isLoading) {
-        return this.deviceScheme;
-      }
-
-      if ('undefined' === typeof store.state.scheme) {
-        return this.deviceScheme;
-      }
-
-      return store.state.scheme;
+      return store.state.scheme || this.deviceScheme;
     }
 
     get deviceScheme() {
@@ -29,24 +26,25 @@ component(
     init() {
       super.init();
 
+      this.schemeDark = window.matchMedia('(prefers-color-scheme: dark)');
+      this.onScheme();
+
       const onScheme = this.onScheme.bind(this);
 
-      this.schemeDark = window.matchMedia('(prefers-color-scheme: dark)');
-
       this.events = [
-        [document, store.getEvent('isLoading'), onScheme],
+        [document, store.getEvent('scheme'), onScheme],
         [this.schemeDark, 'change', onScheme],
       ];
     }
 
     onScheme() {
-      console.log('onScheme');
-      console.log(this.scheme);
-      this.setScheme(this.scheme);
-    }
+      this.root.classList.remove(classNames[schemeType.dark], classNames[schemeType.light]);
 
-    setScheme(scheme) {
-      console.log(this.root);
+      const className = classNames[this.scheme];
+
+      if (className) {
+        this.root.classList.add(className);
+      }
     }
   }
 );
