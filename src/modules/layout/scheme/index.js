@@ -7,39 +7,18 @@ import './style.less';
 component(
   '.layout-scheme',
   class extends Base {
-    scheme = schemeType.auto;
-
-    init() {
-      super.init();
-
-      const onScheme = this.onScheme.bind(this);
-      const onSchemeChange = this.onSchemeChange.bind(this);
-
-      this.checkbox = this.root.querySelector('.layout-scheme__checkbox');
+    constructor(root) {
+      super(root);
       this.scheme = store.state.scheme ?? schemeType.auto;
-
-      this.events = [
-        [document, store.getEvent('scheme'), onScheme],
-        [this.checkbox, 'change', onSchemeChange],
-      ];
     }
 
-    onScheme({detail}) {
-      console.log('onScheme');
-      if (detail !== this.scheme) {
-        this.scheme = detail ?? schemeType.auto;
-        this.updateScheme(this.scheme);
-      }
+    get scheme() {
+      return this._scheme;
     }
 
-    onSchemeChange() {
-      this.scheme = (this.scheme + 1) % 3;
+    set scheme(scheme) {
+      this._scheme = scheme;
 
-      store.setStateKey('scheme', this.scheme);
-      this.updateScheme(this.scheme);
-    }
-
-    updateScheme(scheme) {
       switch (scheme) {
         case schemeType.auto:
           this.checkbox.checked = false;
@@ -54,6 +33,31 @@ component(
           this.checkbox.indeterminate = false;
           break;
       }
+    }
+
+    init() {
+      super.init();
+
+      const onScheme = this.onScheme.bind(this);
+      const onSchemeChange = this.onSchemeChange.bind(this);
+
+      this.checkbox = this.root.querySelector('.layout-scheme__checkbox');
+
+      this.events = [
+        [document, store.getEvent('scheme'), onScheme],
+        [this.checkbox, 'change', onSchemeChange],
+      ];
+    }
+
+    onScheme({detail}) {
+      if (detail !== this.scheme) {
+        this.scheme = detail ?? schemeType.auto;
+      }
+    }
+
+    onSchemeChange() {
+      this.scheme = (this.scheme + 1) % 3;
+      store.setStateKey('scheme', this.scheme);
     }
   }
 );

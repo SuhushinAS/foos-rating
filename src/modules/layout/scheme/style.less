@@ -1,2 +1,54 @@
+@import (reference) 'src/style/mixins';
+
 .layout-scheme {
+  @nav-size: 64px;
+  @icon-size-default: 32px;
+  @icon-size-active: 48px;
+  @icon-offset-default: (@nav-size - @icon-size-default) / 2;
+  @icon-offset-active: (@nav-size - @icon-size-active) / 2;
+
+  height: @nav-size;
+  position: relative;
+  width: @nav-size;
+
+  &__checkbox {
+    display: none;
+  }
+
+  &__label {
+    bottom: @icon-offset-active;
+    color: @c-primary-2;
+    cursor: pointer;
+    display: block;
+    font-size: @icon-size-active;
+    left: @icon-offset-active;
+    line-height: 0;
+    opacity: 0;
+    position: absolute;
+    right: @icon-offset-active;
+    text-align: center;
+    top: @icon-offset-active;
+    transition: opacity 100ms ease;
+
+    &_auto {
+      bottom: @icon-offset-default;
+      color: @c-primary-3;
+      font-size: @icon-size-default;
+      left: @icon-offset-default;
+      right: @icon-offset-default;
+      top: @icon-offset-default;
+    }
+  }
+
+  &__checkbox:checked ~ &__label_light {
+    opacity: 1;
+  }
+
+  &__checkbox:indeterminate ~ &__label_auto {
+    opacity: 1;
+  }
+
+  &__checkbox:not(:checked):not(:indeterminate) ~ &__label_dark {
+    opacity: 1;
+  }
 }

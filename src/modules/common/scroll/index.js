@@ -8,11 +8,6 @@ import './style.less';
  * Класс для примера.
  */
 class Scroll extends Base {
-  /**
-   * Конструктор класса для примера.
-   * @param {*} root Элемент.
-   * @return {void}
-   */
   constructor(root) {
     super(root);
 

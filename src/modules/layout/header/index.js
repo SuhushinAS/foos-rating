@@ -7,11 +7,6 @@ import './style.less';
 component(
   '.header',
   class extends Base {
-    /**
-     * Конструктор класса для примера.
-     * @param {*} root Элемент.
-     * @return {void}
-     */
     constructor(root) {
       super(root);
 

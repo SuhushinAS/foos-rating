@@ -12,11 +12,6 @@ import './style.less';
 component(
   '.rating-list',
   class extends Base {
-    /**
-     * Конструктор класса для примера.
-     * @param {*} root Элемент.
-     * @return {void}
-     */
     constructor(root) {
       super(root);
       this.body = this.root.querySelector('.rating-list__table-body');
