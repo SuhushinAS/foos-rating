@@ -27,9 +27,17 @@
     @offset: 0px;
     @size: 3px;
 
-    background-color: @c-black-9;
     display: none;
     position: absolute;
+    transition: background-color @animation;
+
+    .html_light & {
+      background-color: @c-black-9;
+    }
+
+    .html_dark & {
+      background-color: @c-white-2;
+    }
 
     &_h {
       bottom: @offset;
@@ -58,7 +66,6 @@
 
     &:after {
       @offset: 0;
-      background-color: @c-black-5;
       bottom: @offset;
       content: '';
       display: block;
@@ -66,7 +73,15 @@
       position: absolute;
       right: @offset;
       top: @offset;
-      transition: background @animation, border-radius @animation, width @animation;
+      transition: background-color @animation;
+
+      .html_light & {
+        background-color: @c-black-5;
+      }
+
+      .html_dark & {
+        background-color: @c-white-3;
+      }
     }
 
     &_h {
