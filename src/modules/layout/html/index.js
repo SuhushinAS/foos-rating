@@ -2,6 +2,7 @@ import {Base} from 'modules/common/base';
 import {store} from 'modules/common/state';
 import schemeType from 'modules/layout/scheme/schemeType.json';
 import {component} from 'utils/component';
+import './style.less';
 
 const classNames = {
   [schemeType.dark]: 'html_dark',

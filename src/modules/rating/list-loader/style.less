@@ -1,13 +1,21 @@
 @import (reference) 'src/style/mixins';
 
 .rating-list-loader {
-  background-color: @c-white-9;
   bottom: 0;
   display: flex;
   left: 0;
   position: absolute;
   right: 0;
   top: 0;
+  transition: background-color @animation;
+
+  .html_light & {
+    background-color: @c-white-9;
+  }
+
+  .html_dark & {
+    background-color: @c-black-2;
+  }
 
   &__inner {
     display: flex;

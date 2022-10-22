@@ -5,8 +5,17 @@
   @blur: 20px;
   @offset: 30px;
 
-  background-color: @c-primary-7;
-  box-shadow: 0 @offset @blur @spread @c-primary-2;
   position: relative;
+  transition: background-color @animation, box-shadow @animation;
   z-index: 1;
+
+  .html_light & {
+    background-color: @c-primary-7;
+    box-shadow: 0 @offset @blur @spread @c-primary-2;
+  }
+
+  .html_dark & {
+    background-color: @c-primary-3;
+    box-shadow: none;
+  }
 }

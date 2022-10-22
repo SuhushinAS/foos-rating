@@ -5,14 +5,23 @@
   @blur: 20px;
   @offset: -30px;
 
-  background-color: @c-primary-7;
-  color: @c-primary-2;
   font-size: 36px;
   line-height: 48px;
   overflow: hidden;
   padding: 8px;
   position: relative;
   text-overflow: ellipsis;
+  transition: background-color @animation, color @animation;
   white-space: nowrap;
   z-index: 1;
+
+  .html_light & {
+    background-color: @c-primary-7;
+    color: @c-primary-2;
+  }
+
+  .html_dark & {
+    background-color: @c-primary-3;
+    color: @c-primary-10;
+  }
 }
