@@ -3,26 +3,35 @@
 .rating-list-item-favorite {
   align-items: center;
   display: flex;
+  height: 48px;
   justify-content: center;
+  position: relative;
+  width: 48px;
 
   &__input {
     display: none;
   }
 
   &__label {
+    bottom: 8px;
     color: @c-warning;
     cursor: pointer;
     display: inline-block;
     font-size: 32px;
+    left: 8px;
     line-height: 0;
-    padding: 8px;
+    opacity: 1;
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    transition: opacity @animation;
   }
 
   &__input:checked ~ &__label_off {
-    display: none;
+    opacity: 0;
   }
 
   &__input:not(:checked) ~ &__label_on {
-    display: none;
+    opacity: 0;
   }
 }
