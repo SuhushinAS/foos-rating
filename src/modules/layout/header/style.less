@@ -1,19 +1,21 @@
 @import (reference) 'src/style/mixins';
 
 .header {
-  @spread: 20px;
-  @blur: 20px;
-  @offset: -30px;
+  height: 64px;
 
-  font-size: 36px;
-  line-height: 48px;
-  overflow: hidden;
-  padding: 8px;
-  position: relative;
-  text-overflow: ellipsis;
-  transition: background-color @animation, color @animation;
-  white-space: nowrap;
-  z-index: 1;
+  &__inner {
+    @spread: 20px;
+    @blur: 20px;
+    @offset: -30px;
+
+    display: table;
+    font-size: 36px;
+    line-height: 48px;
+    padding: 8px;
+    transition: background-color @animation, color @animation;
+    white-space: nowrap;
+    z-index: 1;
+  }
 
   .html_light & {
     background-color: @c-primary-7;

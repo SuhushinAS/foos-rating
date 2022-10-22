@@ -17,6 +17,7 @@ component(
       super.init();
       const render = this.render.bind(this);
 
+      this.inner = this.root.querySelector('.header__inner');
       this.events = [
         [document, store.getEvent('lastEvent'), render],
         [document, store.getEvent('view'), render],
@@ -24,7 +25,7 @@ component(
     }
 
     render() {
-      this.root.innerHTML = this.getContent();
+      this.inner.innerHTML = this.getContent();
     }
 
     getContent() {
