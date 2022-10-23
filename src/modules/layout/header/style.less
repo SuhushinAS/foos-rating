@@ -8,22 +8,21 @@
     @blur: 20px;
     @offset: -30px;
 
+    color: @c-primary-4;
     display: table;
     font-size: 36px;
     line-height: 48px;
     padding: 8px;
-    transition: background-color @animation, color @animation;
+    transition: background-color @animation;
     white-space: nowrap;
     z-index: 1;
   }
 
   .html_light & {
-    background-color: @c-primary-7;
-    color: @c-primary-2;
+    background-color: @c-primary-10;
   }
 
   .html_dark & {
-    background-color: @c-primary-3;
-    color: @c-primary-10;
+    background-color: @c-primary-1;
   }
 }

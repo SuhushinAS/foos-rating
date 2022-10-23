@@ -7,22 +7,20 @@
   flex-grow: 1;
 
   &__head {
-    @spread: 20px;
-    @blur: 20px;
-    @offset: -30px;
-
     position: relative;
-    transition: background-color @animation, box-shadow @animation;
+    transition: background-color @animation, box-shadow @animation, color @animation;
     z-index: 1;
 
     .html_light & {
       background-color: @c-primary-8;
-      box-shadow: 0 @offset @blur @spread @c-primary-2;
+      box-shadow: 0 2px 5px @c-black-8;
+      color: @c-black-5;
     }
 
     .html_dark & {
       background-color: @c-primary-2;
-      box-shadow: none;
+      box-shadow: 0 0 0 transparent;
+      color: @c-white-6;
     }
   }
 
@@ -30,6 +28,7 @@
     flex-basis: 0;
     flex-grow: 1;
     overflow: hidden;
+    transition: background-color @animation;
 
     .html_light & {
       background-color: @c-white;
@@ -123,7 +122,14 @@
 
   &__change {
     &_negative {
-      color: @c-error;
+      .html_light & {
+        color: @c-error-6;
+      }
+
+      .html_dark & {
+        color: @c-error-2;
+        color-scheme: only light;
+      }
     }
 
     &_none {
@@ -131,7 +137,14 @@
     }
 
     &_positive {
-      color: @c-success;
+      .html_light & {
+        color: @c-success-6;
+      }
+
+      .html_dark & {
+        color: @c-success-2;
+        color-scheme: only light;
+      }
     }
   }
 }

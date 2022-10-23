@@ -12,7 +12,6 @@
   @icon-offset-active: (@nav-size - @icon-size-active) / 2;
 
   &__label {
-    color: @c-primary-3;
     cursor: pointer;
     display: block;
     font-size: @icon-size-default;
@@ -22,19 +21,19 @@
     width: @nav-size;
     transition: color @animation, font-size @animation, padding @animation;
 
+    .html_light & {
+      color: @c-black-4;
+    }
+
     .html_dark & {
-      color: @c-primary-8;
+      color: @c-white-7;
     }
   }
 
   &__radio:checked ~ &__label {
-    color: @c-primary-2;
+    color: @c-primary-4;
     font-size: @icon-size-active;
     padding: @icon-offset-active;
-    transition: color 100ms ease, font-size 100ms ease, padding 100ms ease;
-
-    .html_dark & {
-      color: @c-primary-6;
-    }
+    transition: font-size @animation, padding @animation;
   }
 }

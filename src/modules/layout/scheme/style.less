@@ -17,7 +17,7 @@
 
   &__label {
     bottom: @icon-offset-active;
-    color: @c-primary-2;
+    color: @c-primary-4;
     cursor: pointer;
     display: block;
     font-size: @icon-size-active;
@@ -28,23 +28,22 @@
     right: @icon-offset-active;
     text-align: center;
     top: @icon-offset-active;
-    transition: bottom @animation, color @animation, font-size @animation, left @animation, opacity @animation, right @animation, top @animation;
-
-    .html_dark & {
-      color: @c-primary-6;
-    }
+    transition: bottom @animation, font-size @animation, left @animation, opacity @animation, right @animation, top @animation;
   }
 
   &__checkbox:indeterminate ~ &__label {
     bottom: @icon-offset-default;
-    color: @c-primary-3;
     font-size: @icon-size-default;
     left: @icon-offset-default;
     right: @icon-offset-default;
     top: @icon-offset-default;
 
+    .html_light & {
+      color: @c-black-4;
+    }
+
     .html_dark & {
-      color: @c-primary-8;
+      color: @c-white-7;
     }
   }
 
