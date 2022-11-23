@@ -1,13 +1,21 @@
 @import (reference) 'src/style/mixins';
 
 .rating-list-loader {
-  background-color: @c-white-9;
   bottom: 0;
   display: flex;
   left: 0;
   position: absolute;
   right: 0;
   top: 0;
+  transition: background-color @animation;
+
+  .html_light & {
+    background-color: @c-white-9;
+  }
+
+  .html_dark & {
+    background-color: @c-black-2;
+  }
 
   &__inner {
     display: flex;
@@ -25,32 +33,70 @@
     width: @size;
 
     &_1 {
-      background-color: @c-primary-3;
-      animation: loading @duration linear -2 * @duration / 3 infinite;
+      .html_light & {
+        animation: loading-light @duration linear -2 * @duration / 3 infinite;
+        background-color: @c-primary-7;
+      }
+
+      .html_dark & {
+        animation: loading-dark @duration linear -2 * @duration / 3 infinite;
+        background-color: @c-primary-1;
+      }
     }
 
     &_2 {
-      background-color: @c-primary-8;
-      animation: loading @duration linear -@duration / 3 infinite;
+
+      .html_light & {
+        animation: loading-light @duration linear -@duration / 3 infinite;
+        background-color: @c-primary-9;
+      }
+
+      .html_dark & {
+        animation: loading-dark @duration linear -@duration / 3 infinite;
+        background-color: @c-primary-3;
+      }
     }
 
     &_3 {
-      background-color: @c-primary-6;
-      animation: loading @duration linear 0s infinite;
-    }
 
-    @keyframes loading {
-      0% {
-        background-color: @c-primary-3;
-      }
-      33.33333333333333333% {
-        background-color: @c-primary-6;
-      }
-      66.66666666666666667% {
+      .html_light & {
+        animation: loading-light @duration linear 0s infinite;
         background-color: @c-primary-8;
       }
+
+      .html_dark & {
+        animation: loading-dark @duration linear 0s infinite;
+        background-color: @c-primary-2;
+      }
+    }
+
+    @keyframes loading-light {
+      0% {
+        background-color: @c-primary-7;
+      }
+      33.33333333333333333% {
+        background-color: @c-primary-8;
+      }
+      66.66666666666666667% {
+        background-color: @c-primary-9;
+      }
       100% {
+        background-color: @c-primary-7;
+      }
+    }
+
+    @keyframes loading-dark {
+      0% {
+        background-color: @c-primary-1;
+      }
+      33.33333333333333333% {
+        background-color: @c-primary-2;
+      }
+      66.66666666666666667% {
         background-color: @c-primary-3;
+      }
+      100% {
+        background-color: @c-primary-1;
       }
     }
   }

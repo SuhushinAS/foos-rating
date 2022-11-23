@@ -1,11 +1,17 @@
 @import (reference) 'src/style/mixins';
 
 .rating-list-item {
-  &:nth-child(even) {
-    background-color: @c-primary-10;
+  transition: background-color @animation;
+
+  .html_light & {
+    &:nth-child(even) {
+      background-color: @c-gray-10;
+    }
   }
 
-  &:nth-child(odd) {
-    //background-color: @c-black-10;
+  .html_dark & {
+    &:nth-child(even) {
+      background-color: @c-gray-1;
+    }
   }
 }

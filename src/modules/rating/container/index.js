@@ -8,11 +8,6 @@ import './style.less';
 component(
   '.rating-container',
   class extends Base {
-    /**
-     * Конструктор класса для примера.
-     * @param {*} root Элемент.
-     * @return {void}
-     */
     constructor(root) {
       super(root);
       this.load();

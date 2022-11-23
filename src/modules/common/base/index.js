@@ -3,11 +3,6 @@
  * Класс для примера.
  */
 export class Base {
-  /**
-   * Конструктор класса для примера.
-   * @param {*} root Элемент.
-   * @return {void}
-   */
   constructor(root) {
     this.root = root;
     this.init();

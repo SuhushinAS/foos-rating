@@ -24,9 +24,18 @@ body,
 body {
   .f_p();
 
-  color: @c-primary-2;
+  -webkit-tap-highlight-color: transparent;
   font-family: @roboto-font-name, Helvetica, sans-serif;
+  transition: color @animation;
   word-wrap: break-word;
+
+  .html_light & {
+    color: @c-black-5;
+  }
+
+  .html_dark & {
+    color: @c-white-5;
+  }
 }
 
 button,

@@ -4,11 +4,6 @@ import {RatingListItemFavorite} from 'modules/rating/list-item-favorite';
 import './style.less';
 
 export class RatingListItem extends Base {
-  /**
-   * Конструктор класса для примера.
-   * @param {*} root Элемент.
-   * @return {void}
-   */
   constructor(root) {
     super(root);
 

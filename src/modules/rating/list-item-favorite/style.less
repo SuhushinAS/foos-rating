@@ -3,26 +3,54 @@
 .rating-list-item-favorite {
   align-items: center;
   display: flex;
+  height: 48px;
   justify-content: center;
+  position: relative;
+  width: 48px;
 
   &__input {
     display: none;
   }
 
   &__label {
-    color: @c-warning;
+    bottom: 8px;
     cursor: pointer;
     display: inline-block;
     font-size: 32px;
+    left: 8px;
     line-height: 0;
-    padding: 8px;
+    opacity: 1;
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    transition: opacity @animation;
+
+    &_off {
+      .html_light & {
+        color: @c-warning-8;
+      }
+
+      .html_dark & {
+        color: @c-warning-1;
+      }
+    }
+
+    &_on {
+      .html_light & {
+        color: @c-warning-7;
+      }
+
+      .html_dark & {
+        color: @c-warning-2;
+      }
+    }
   }
 
   &__input:checked ~ &__label_off {
-    display: none;
+    opacity: 0;
   }
 
   &__input:not(:checked) ~ &__label_on {
-    display: none;
+    opacity: 0;
   }
 }
