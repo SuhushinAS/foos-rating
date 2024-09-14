@@ -17,24 +17,20 @@ component(
       const render = this.render.bind(this);
       const onChange = this.onChange.bind(this);
 
-      this.radio = this.root.querySelector('.navigation-item__radio');
+      this.checkbox = this.root.querySelector('.navigation-item__checkbox');
 
       this.events = [
-        [document, store.getEvent('view'), render],
-        [this.radio, 'change', onChange],
+        [document, store.getEvent(this.checkbox.name), render],
+        [this.checkbox, 'change', onChange],
       ];
     }
 
     render() {
-      const {view} = store.state;
-
-      if (this.radio.value === view && !this.radio.checked) {
-        this.radio.checked = true;
-      }
+      this.checkbox.checked = store.state[this.checkbox.name];
     }
 
     onChange() {
-      store.updateStateKey('view', () => this.radio.value);
+      store.updateStateKey(this.checkbox.name, () => this.checkbox.checked);
     }
   }
 );

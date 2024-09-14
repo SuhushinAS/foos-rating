@@ -1,10 +1,10 @@
 import {Base} from 'modules/common/base';
 import 'modules/common/scroll';
 import {store} from 'modules/common/state';
-import viewType from 'modules/layout/navigation/viewType.json';
 import {RatingListItem} from 'modules/rating/list-item';
 import 'modules/rating/list-item';
 import listItem from 'modules/rating/list-item/index.hbs';
+import 'modules/rating/title';
 import {component} from 'utils/component';
 import changeType from './changeType.json';
 import './style.less';
@@ -18,18 +18,15 @@ component(
       this.render();
     }
 
-    filterViewMap = {
-      [viewType.last]: (rating) => rating.wasInLastEvent,
-      [viewType.favorite]: (rating) => store.state.favorite[rating.id],
-    };
-
     ratings = [];
 
     ratingItems = [];
 
     render() {
+      const ratingKey = store.state.isSeason ? 'season' : 'ratings';
+
       this.ratingItems.forEach(this.ratingItemDestroy);
-      this.ratings = store.state.ratings
+      this.ratings = store.state.tsk[ratingKey]
         .filter(this.filterView)
         .map(this.getRatingFormat);
       this.body.innerHTML = this.ratings.map(listItem).join('');
@@ -37,9 +34,11 @@ component(
     }
 
     filterView = (rating) => {
-      const filterView = this.filterViewMap[store.state.view] ?? (() => true);
+      const {isFavorite, isLast} = store.state;
+      const checkFavorite = !isFavorite || !!store.state.favorite[rating.id];
+      const checkLast = !isLast || !!rating.wasInLastEvent;
 
-      return filterView(rating);
+      return checkFavorite && checkLast;
     };
 
     getRatingFormat = (rating) => ({
@@ -87,7 +86,10 @@ component(
       const render = this.render.bind(this);
 
       this.events = [
-        [document, store.getEvent('ratings'), render],
+        [document, store.getEvent('isFavorite'), render],
+        [document, store.getEvent('isLast'), render],
+        [document, store.getEvent('isSeason'), render],
+        [document, store.getEvent('tsk'), render],
         [document, store.getEvent('view'), render],
       ];
     }

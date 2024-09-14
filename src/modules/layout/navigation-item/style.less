@@ -1,7 +1,7 @@
 @import (reference) 'src/style/mixins';
 
 .navigation-item {
-  &__radio {
+  &__checkbox {
     display: none;
   }
 
@@ -22,15 +22,15 @@
     transition: color @animation, font-size @animation, padding @animation;
 
     .html_light & {
-      color: @c-black-4;
+      color: @c-black-5;
     }
 
     .html_dark & {
-      color: @c-white-7;
+      color: @c-white-6;
     }
   }
 
-  &__radio:checked ~ &__label {
+  &__checkbox:checked ~ &__label {
     color: @c-primary-4;
     font-size: @icon-size-active;
     padding: @icon-offset-active;

@@ -1,28 +1,38 @@
 @import (reference) 'src/style/mixins';
 
 .header {
-  height: 64px;
+  border-collapse: collapse;
+  text-align: center;
+  width: 100%;
 
-  &__inner {
-    @spread: 20px;
-    @blur: 20px;
-    @offset: -30px;
+  &__row {
+    &_title {
+      font-size: 14px;
+      font-weight: bold;
+      line-height: 22px;
+    }
 
-    color: @c-primary-4;
-    display: table;
-    font-size: 36px;
-    line-height: 48px;
-    padding: 8px;
-    transition: background-color @animation;
-    white-space: nowrap;
-    z-index: 1;
+    &_data {
+      color: @c-primary-4;
+      font-size: 24px;
+      font-weight: bold;
+      line-height: 32px;
+    }
   }
 
-  .html_light & {
-    background-color: @c-primary-10;
-  }
+  &__col {
+    padding: 0;
 
-  .html_dark & {
-    background-color: @c-primary-1;
+    &_season {
+      width: 90px;
+    }
+
+    &_last {
+      width: 140px;
+    }
+
+    &_favorite {
+      width: 145px;
+    }
   }
 }

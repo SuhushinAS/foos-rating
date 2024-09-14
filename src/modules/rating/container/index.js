@@ -1,7 +1,7 @@
 import {Base} from 'modules/common/base';
 import {store} from 'modules/common/state';
 import 'modules/rating/list';
-import 'modules/rating/list-loader';
+import 'modules/rating/loader';
 import {component} from 'utils/component';
 import './style.less';
 
@@ -15,14 +15,21 @@ component(
 
     load() {
       store.updateStateKey('isLoading', () => true);
-      fetch('/api/ratings').then(this.getJSON).then(this.onGetList);
+      Promise.all([
+        fetch('/api/ratings').then(this.getJSON),
+        fetch('/api/ratings/season').then(this.getJSON),
+      ]).then(this.onGetList);
     }
 
     getJSON = (response) => response.json();
 
-    onGetList = ({lastEvent, ratings}) => {
+    onGetList = ([{lastEvent, ratings}, {ratings: season, seasonStartDate}]) => {
       store.updateStateKey('lastEvent', () => lastEvent);
-      store.updateStateKey('ratings', () => ratings.map(this.getRatingWithPosition));
+      store.updateStateKey('tsk', () => ({
+        ratings: ratings.map(this.getRatingWithPosition),
+        season: season.map(this.getRatingWithPosition),
+      }));
+      store.updateStateKey('seasonStartDate', () => seasonStartDate);
       store.updateStateKey('isLoading', () => false);
     };
 
