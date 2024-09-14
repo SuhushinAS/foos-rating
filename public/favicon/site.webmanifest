@@ -49,6 +49,20 @@
     }
   ],
   "name": "Foos Rating",
+  "screenshots": [
+    {
+      "src": "/favicon/screen-750x1334.png",
+      "type": "image/png",
+      "sizes": "750x1334",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "/favicon/screen-2048x1536.png",
+      "type": "image/png",
+      "sizes": "2048x1536",
+      "form_factor": "wide"
+    }
+  ],
   "short_name": "Foos Rating",
   "start_url": "/",
   "theme_color": "#222423"
