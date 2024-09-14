@@ -1,10 +1,10 @@
 import {Base} from 'modules/common/base';
 import 'modules/common/scroll';
 import {store} from 'modules/common/state';
-import viewType from 'modules/layout/navigation/viewType.json';
 import {RatingListItem} from 'modules/rating/list-item';
 import 'modules/rating/list-item';
 import listItem from 'modules/rating/list-item/index.hbs';
+import 'modules/rating/title';
 import {component} from 'utils/component';
 import changeType from './changeType.json';
 import './style.less';

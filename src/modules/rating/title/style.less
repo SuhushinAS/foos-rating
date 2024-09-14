@@ -1,0 +1,21 @@
+@import (reference) 'src/style/mixins';
+
+.rating-title {
+  font-size: 50vw;
+  line-height: 1;
+  font-weight: bold;
+  height: 100%;
+  position: absolute;
+  transform: rotate(-180deg);
+  width: 100%;
+  white-space: nowrap;
+  writing-mode: tb-rl;
+
+  .html_light & {
+    color: @c-black-10;
+  }
+
+  .html_dark & {
+    color: @c-white-1;
+  }
+}

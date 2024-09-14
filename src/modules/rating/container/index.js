@@ -1,7 +1,7 @@
 import {Base} from 'modules/common/base';
 import {store} from 'modules/common/state';
 import 'modules/rating/list';
-import 'modules/rating/list-loader';
+import 'modules/rating/loader';
 import {component} from 'utils/component';
 import './style.less';
 
