@@ -23,10 +23,13 @@ component(
     ratingItems = [];
 
     render() {
-      const ratingKey = store.state.isSeason ? 'season' : 'ratings';
-
       this.ratingItems.forEach(this.ratingItemDestroy);
-      this.ratings = store.state.tsk[ratingKey]
+
+      const ratingKey = store.state.isSeason ? 'season' : 'ratings';
+      const data = store.state.tsk ?? {};
+      const ratings = data[ratingKey] ?? [];
+
+      this.ratings = ratings
         .filter(this.filterView)
         .map(this.getRatingFormat);
       this.body.innerHTML = this.ratings.map(listItem).join('');
